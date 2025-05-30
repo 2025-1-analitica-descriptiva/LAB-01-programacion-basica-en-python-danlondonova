@@ -7,6 +7,22 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_04():
+    ruta = "files/input/data.csv"
+    data = {}
+
+    with open(ruta, "r") as f:
+        for line in f:
+            columnas = line.strip().split("\t")  # usar tabulador como separador
+            if columnas:
+                mes=columnas[2].split("-")[1]  # Extraer el mes de la fecha
+                data[mes] = data.get(mes, 0) + 1
+                dupla = sorted(data.items())  # Ordenar alfabéticamente
+    return dupla
+
+if __name__ == "__main__":
+    print(pregunta_04())
+
+
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la
     cantidad de registros por cada mes, tal como se muestra a continuación.

@@ -7,6 +7,26 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_07():
+    ruta = "files/input/data.csv"
+    data = {}
+
+    with open(ruta, "r") as f:
+        for line in f:
+            columnas = line.strip().split("\t")  # usar tabulador como separador
+            if columnas:
+                num  = int (columnas[1])# Primera columna
+                letra = columnas[0]
+                if num not in data:
+                    data[num] = [letra]
+                else:
+                    data[num].append(letra)
+
+    resultado = sorted(data.items())
+    return resultado
+if __name__ == "__main__":
+    print(pregunta_07())
+
+
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla
     contiene un valor posible de la columna 2 y una lista con todas las letras

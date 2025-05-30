@@ -7,8 +7,25 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_08():
+    ruta = "files/input/data.csv"
+    data = {}
+
+    with open(ruta, "r") as f:
+        for line in f:
+            columnas = line.strip().split("\t")  # usar tabulador como separador
+            if columnas:
+                num  = int(columnas[1])# Primera columna
+                letra = columnas[0]
+                if num not in data:
+                    data[num] = [letra]
+                else:
+                    data[num].append(letra)
+    # Convertir las listas de letras a conjuntos para eliminar duplicados y ordenarlo
+        resultado = [(num, sorted(set(letras))) for num, letras in data.items()]
+        # Ordenar por el primer elemento de la tupla (el número)
+    return sorted(resultado)
     """
-    Genere una lista de tuplas, donde el primer elemento de cada tupla
+    Genere una lista de duplas, donde el primer elemento de cada tupla
     contiene  el valor de la segunda columna; la segunda parte de la tupla
     es una lista con las letras (ordenadas y sin repetir letra) de la
     primera  columna que aparecen asociadas a dicho valor de la segunda
